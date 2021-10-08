@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class UserRegistration {
     private Scanner scanner;
-    private Pattern p;
+    private Pattern pattern;
     private Matcher match;
 
     public UserRegistration() {
@@ -13,10 +13,13 @@ public class UserRegistration {
 
     public String validName() {
         boolean flag = true;
+        String patternEx = "[A-Za-z]{3,}";
+         pattern = Pattern.compile(patternEx);
         while (flag) {
             System.out.println("Please enter  name with First capital letter and minimum 3");
             String name = scanner.nextLine();
-            boolean result = Pattern.compile("^[A-Z]{3}").matcher(name).matches();
+            Matcher matcher = pattern.matcher(name);
+            boolean result = matcher.matches();
             if (result) {
                 flag = false;
                 return name;
